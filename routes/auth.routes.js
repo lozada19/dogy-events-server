@@ -116,7 +116,7 @@ router.post("/login", async (req, res, next) => {
 
     // verificamos si el usuario es quien dice ser... creamos la sesion
     
-    // crear el payload => info del usuario que esta creando el token 
+    // crear el payload => info del usuario que esta creando el token  ==
 
     const payload = {
         _id: foundEmail._id,
@@ -127,7 +127,7 @@ router.post("/login", async (req, res, next) => {
     const authToken = jwt.sign(
         payload,
         process.env.TOKEN_SECRET,
-        {algorithm: "HS256", expiresIn: "8h"}
+        {algorithm: "HS256", expiresIn: "200h"}
     )
 
     res.json({authToken: authToken})

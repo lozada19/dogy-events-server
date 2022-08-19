@@ -1,25 +1,29 @@
 const router = require("express").Router();
 const DogModel = require("../models/Dog.model");
+const isAuthenticated = require("../middlewares/isAuthenticated")
 
 
 //-------------------- CREAR UN PERRITO ------------ //
 // POST "/api/dog"
-router.post("/", async (req,res, next) => {
+router.post("/", isAuthenticated, async(req,res, next) => {
   
     console.log("CREAR", req.body)
+    console.log("PAYLOAD", req.payload) // EN EL REQ.PAYLOAD UNDEFINED
+  
    
     try {
 
         const newDog = await DogModel.create({
+
             namedog: req.body.namedog,
             dateofBirth: req.body.dateofBirth,
             breed: req.body.breed,
             aboutme: req.body.aboutme,
             image: req.body.image,
-            //owner: req.payload.user._id // preguntar si se puede hacer asi URGE
+            owner: req.payload._id // preguntar si se puede hacer asi URGE
 
         })
-        console.log("PAYLOAD", req.payload) // EN EL REQ.PAYLOAD UNDEFINED
+      
 
         res.json(newDog)
 
@@ -42,9 +46,13 @@ router.get("/", async (req, res, next) => {
 
 //------------------- MIS PERRITOS ------------------//   PREGUNTAR URGE
 // GET "/api/dog/myDog"
-router.get("/", async (req, res, next) => {
+router.get("/myDog", isAuthenticated, async (req, res, next) => {
+
 try {
-    const myDogList = await DogModel.find({owner: re})
+    const myDogList = await DogModel.find({owner: req.payload._id})
+   res.json(myDogList)
+    
+    //res.json("wiiii funciona ")
 } catch (error) {
     next(error)
 }
