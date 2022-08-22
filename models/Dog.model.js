@@ -7,7 +7,7 @@ const dogSchema = new Schema({
     required: true,
   },
   dateofBirth: {
-    type: Date,
+    type: String,
   },
   breed: {
     type: String,

@@ -16,4 +16,10 @@ router.use("/dog", dogRoutes)
 const eventRoutes = require("./event.routes")
 router.use("/event", eventRoutes)
 
+const uploadRoutes = require("./upload.routes")
+router.use("/upload", uploadRoutes)
+
+// const profileRoutes = require("./profile.routes")
+// router.use("/profile", profileRoutes)
+
 module.exports = router;

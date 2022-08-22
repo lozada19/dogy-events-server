@@ -31,7 +31,7 @@ router.post("/", isAuthenticated,  async (req, res, next) => {
 // GET "/api/event"
 router.get("/", async (req, res, next) => {
     try {
-        const allEvent = await EventModel.find().select("namedog")
+        const allEvent = await EventModel.find().select("eventname")
         res.json(allEvent) // aqui se envia una respuesta a la bd de frontend
        // res.json("funciona wiiiiii")
     } catch (error) {
@@ -58,7 +58,6 @@ router.get("/myEvent", isAuthenticated, async (req, res, next) => {
 router.get("/:eventId", async (req, res, next) => {
     try {
         const eventDetails = await EventModel.findById(req.params.eventId).populate("owner pet")
-    
         res.json(eventDetails)
         //res.json("funciona wiiii")
     } catch (error) {
@@ -106,7 +105,8 @@ router.patch("/:eventId/addPet", isAuthenticated, async (req, res, next) => {
         await EventModel.findByIdAndUpdate(req.params.eventId, { // BUSCO EL EVENTO 
             $push: {pet:myDog} // AQUI SE APUNTAN LOS PERROS
         })
-        res.json("editado")
+       // res.json("editado")
+       res.json("perrito añadido")
 
     } catch (error) {
         next(error)
