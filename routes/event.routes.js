@@ -97,16 +97,15 @@ router.patch("/:eventId", async (req, res, next) => {
     }
 })
 
-router.patch("/:eventId/addPet", isAuthenticated, async (req, res, next) => {
+router.patch("/:eventId/:dogId/addPet", async (req, res, next) => {
      
     try {
-        const myDog = await DogModel.find({owner: req.payload._id})// BUSCO MIS PERROS CON EL USRUARIO ACTIVO
-        console.log("MI PERRO", myDog)
-        await EventModel.findByIdAndUpdate(req.params.eventId, { // BUSCO EL EVENTO 
-            $push: {pet:myDog} // AQUI SE APUNTAN LOS PERROS
-        })
-       // res.json("editado")
-       res.json("perrito añadido")
+       const addpet = await EventModel.findByIdAndUpdate(req.params.eventId, {$addToSet: {pet: req.params.dogId}})
+
+      // const allDog = await DogModel.find().select("namedog")
+       console.log("ADDPET", addpet)
+       res.json(addpet)
+       //res.json("perrito añadido")
 
     } catch (error) {
         next(error)

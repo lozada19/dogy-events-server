@@ -61,10 +61,21 @@ try {
 
 // ------------------- DETALLES DE UN PERRITO -----------//
 // GET "/api/dog/:dogId"
-router.get("/:dogId", async (req, res, next) => {
+router.get("/:dogId",isAuthenticated, async (req, res, next) => {
     try {
         const dogDetails = await DogModel.findById(req.params.dogId).populate("owner")
+
+        //let isOwer = false
+       // if (req.payload.user._id == dogDetails.owner._id){
+          //  isOwer = true
+      //  } else {
+      //      isOwer = false
+      //  }
         res.json(dogDetails)
+          //   {
+           // dogDetails,
+          //  isOwer
+       // })
     } catch (error) {
         next(error)
     }
