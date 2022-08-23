@@ -16,6 +16,7 @@ router.post("/", isAuthenticated,  async (req, res, next) => {
            date: req.body.date,
            description: req.body.description,
            address: req.body.address,
+           image: req.body.image,
            owner: req.payload._id,
           
         })
@@ -89,6 +90,7 @@ router.patch("/:eventId", async (req, res, next) => {
            date: req.body.date,
            description: req.body.description,
            address: req.body.address,
+           image: req.body.image,
         })
         res.json("editado")
 
@@ -100,11 +102,12 @@ router.patch("/:eventId", async (req, res, next) => {
 router.patch("/:eventId/:dogId/addPet", async (req, res, next) => {
      
     try {
-       const addpet = await EventModel.findByIdAndUpdate(req.params.eventId, {$addToSet: {pet: req.params.dogId}})
+       await EventModel.findByIdAndUpdate(req.params.eventId, {$addToSet: {pet: req.params.dogId}})
+       const eventDetails = await EventModel.findById(req.params.eventId).populate("pet") // pet se muestarn todos lo detalle de la mascota
 
       // const allDog = await DogModel.find().select("namedog")
-       console.log("ADDPET", addpet)
-       res.json(addpet)
+      // console.log("ADDPET", addpet)
+       res.json(eventDetails )
        //res.json("perrito añadido")
 
     } catch (error) {
