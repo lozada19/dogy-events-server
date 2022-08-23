@@ -25,6 +25,9 @@ const eventSchema = new Schema({
       ref: "Dog",
     },
   ],
+  image: {
+    type: String,
+  },
 });
 
 const EventModel = model("Event", eventSchema);
