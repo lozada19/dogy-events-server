@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const DogModel = require("../models/Dog.model");
 const isAuthenticated = require("../middlewares/isAuthenticated")
+const isDogOwner= require("../middlewares/isDogOwner")
 
 
 //-------------------- CREAR UN PERRITO ------------ //
@@ -64,18 +65,9 @@ try {
 router.get("/:dogId",isAuthenticated, async (req, res, next) => {
     try {
         const dogDetails = await DogModel.findById(req.params.dogId).populate("owner")
-
-        //let isOwer = false
-       // if (req.payload.user._id == dogDetails.owner._id){
-          //  isOwer = true
-      //  } else {
-      //      isOwer = false
-      //  }
+        
         res.json(dogDetails)
-          //   {
-           // dogDetails,
-          //  isOwer
-       // })
+
     } catch (error) {
         next(error)
     }
@@ -98,7 +90,7 @@ router.delete("/:dogId", async (req, res, next) => {
 
 //-------------------- EDITAR UN PERRITO -----------------//
 //PATCH "/api/dog/:dogId"
-router.patch("/:dogId", async (req, res, next) => {
+router.patch("/:dogId", isAuthenticated, isDogOwner, async (req, res, next) => {
     try {
         await DogModel.findByIdAndUpdate(req.params.dogId, {
             namedog: req.body.namedog,
@@ -107,6 +99,7 @@ router.patch("/:dogId", async (req, res, next) => {
             aboutme: req.body.aboutme,
             image: req.body.image,
         })
+
 
         res.json("Actualizado")
     } catch (error) {

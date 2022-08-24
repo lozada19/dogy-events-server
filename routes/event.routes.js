@@ -103,10 +103,7 @@ router.patch("/:eventId/:dogId/addPet", async (req, res, next) => {
      
     try {
        await EventModel.findByIdAndUpdate(req.params.eventId, {$addToSet: {pet: req.params.dogId}})
-       const eventDetails = await EventModel.findById(req.params.eventId).populate("pet") // pet se muestarn todos lo detalle de la mascota
-
-      // const allDog = await DogModel.find().select("namedog")
-      // console.log("ADDPET", addpet)
+       const eventDetails = await EventModel.findById(req.params.eventId).populate("pet") // pet se muestarn todos lo detalle de la mascota linea de detalles
        res.json(eventDetails )
        //res.json("perrito añadido")
 
