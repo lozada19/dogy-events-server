@@ -8,9 +8,9 @@ const isDogOwner =  async (req, res, next) =>  {
     try {
         if(isdog.owner == req.payload._id){
             next()
-         }else {
-             res.status(401).json({errorMessage:"No puedes editar"})
-         }
+        }else {
+            res.status(401).json({errorMessage:"No puedes editar"})
+        }
         
     } catch (error) {
         next(error)

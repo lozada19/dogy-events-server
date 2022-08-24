@@ -82,7 +82,7 @@ router.delete("/:eventId", async (req, res, next) => {
 //-------------------- EDITAR UN EVENTO -----------------//
 //PATCH "/api/event/:id"
 
-router.patch("/:eventId", async (req, res, next) => {
+router.patch("/:eventId", isAuthenticated, async (req, res, next) => {
      
     try {
         await EventModel.findByIdAndUpdate(req.params.eventId, {
