@@ -32,7 +32,7 @@ router.post("/", isAuthenticated,  async (req, res, next) => {
 // GET "/api/event"
 router.get("/", async (req, res, next) => {
     try {
-        const allEvent = await EventModel.find().select("eventname")
+        const allEvent = await EventModel.find().select("eventname image")
         res.json(allEvent) // aqui se envia una respuesta a la bd de frontend
        // res.json("funciona wiiiiii")
     } catch (error) {
