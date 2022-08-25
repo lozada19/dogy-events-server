@@ -36,7 +36,7 @@ router.post("/", isAuthenticated, async(req,res, next) => {
 //-------------------- LISTA, TODOS LOS PERRITOS --------- //
 // GET "/api/dog"
 
-router.get("/", async (req, res, next) => {
+router.get("/",isAuthenticated, async (req, res, next) => {
     try {
         const allDog = await DogModel.find().select("namedog image")
         res.json(allDog) // aqui se envia una respuesta a la bd de frontend
@@ -76,7 +76,7 @@ router.get("/:dogId",isAuthenticated, async (req, res, next) => {
 
 // ------------------- ELIMINAR UN PERRITO --------------//
 // DELETE "api/dog/:dogId"
-router.delete("/:dogId", async (req, res, next) => {
+router.delete("/:dogId",isAuthenticated, async (req, res, next) => {
 
     try {
         await DogModel.findByIdAndDelete(req.params.dogId)

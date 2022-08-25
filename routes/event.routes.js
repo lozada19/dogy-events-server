@@ -30,7 +30,7 @@ router.post("/", isAuthenticated,  async (req, res, next) => {
 
 //-------------------- LISTA, TODOS LOS EVENTOS --------- //
 // GET "/api/event"
-router.get("/", async (req, res, next) => {
+router.get("/", isAuthenticated,async (req, res, next) => {
     try {
         const allEvent = await EventModel.find().select("eventname image")
         res.json(allEvent) // aqui se envia una respuesta a la bd de frontend
@@ -56,7 +56,7 @@ router.get("/myEvent", isAuthenticated, async (req, res, next) => {
 
 // ------------------- DETALLES DE UN EVENTO -----------//
 // GET "/api/event/:id"
-router.get("/:eventId", async (req, res, next) => {
+router.get("/:eventId", isAuthenticated, async (req, res, next) => {
     try {
         const eventDetails = await EventModel.findById(req.params.eventId).populate("owner pet")
         res.json(eventDetails)
@@ -68,7 +68,7 @@ router.get("/:eventId", async (req, res, next) => {
 
 // ------------------- ELIMINAR UN EVENTO --------------//
 // DELETE "api/event/:id"
-router.delete("/:eventId", async (req, res, next) => {
+router.delete("/:eventId", isAuthenticated, async (req, res, next) => {
 
     try {
         await EventModel.findByIdAndDelete(req.params.eventId)
@@ -99,7 +99,7 @@ router.patch("/:eventId", isAuthenticated, async (req, res, next) => {
     }
 })
 
-router.patch("/:eventId/:dogId/addPet", async (req, res, next) => {
+router.patch("/:eventId/:dogId/addPet", isAuthenticated, async (req, res, next) => {
      
     try {
        await EventModel.findByIdAndUpdate(req.params.eventId, {$addToSet: {pet: req.params.dogId}})
