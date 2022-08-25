@@ -8,8 +8,8 @@ const isAuthenticated = require("../middlewares/isAuthenticated")
 // POST "/api/event"
 router.post("/", isAuthenticated,  async (req, res, next) => {
      
-    console.log("REQ.BODY", req.body)
-    console.log("PAYLOAD", req.payload)
+   // console.log("REQ.BODY", req.body)
+   // console.log("PAYLOAD", req.payload)
     try {
         const newEvent = await EventModel.create({
            eventname: req.body.eventname,
@@ -85,7 +85,7 @@ router.delete("/:eventId", isAuthenticated, async (req, res, next) => {
 router.patch("/:eventId", isAuthenticated, async (req, res, next) => {
      
     try {
-        console.log("edita", req.body)
+       // console.log("edita", req.body)
         await EventModel.findByIdAndUpdate(req.params.eventId, {
            eventname: req.body.eventname,
            date: req.body.date,

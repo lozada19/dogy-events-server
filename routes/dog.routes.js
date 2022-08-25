@@ -8,8 +8,8 @@ const isDogOwner= require("../middlewares/isDogOwner")
 // POST "/api/dog"
 router.post("/", isAuthenticated, async(req,res, next) => {
   
-    console.log("CREAR", req.body)
-    console.log("PAYLOAD", req.payload) // EN EL REQ.PAYLOAD UNDEFINED
+   // console.log("CREAR", req.body)
+   // console.log("PAYLOAD", req.payload) // EN EL REQ.PAYLOAD UNDEFINED
   
    
     try {

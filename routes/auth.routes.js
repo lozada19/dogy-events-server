@@ -9,7 +9,7 @@ const isAuthenticated = require("../middlewares/isAuthenticated")
 // Ruta tipo POST "/api/auth/signup"
 
 router.post("/signup", async (req, res, next) => {
-  console.log(req.body); // req.body vemos toda nuestra info
+ // console.log(req.body); // req.body vemos toda nuestra info
 
   // validar si el campo esta vacio, null, undifain, algo que no existe
   // se usa status para dar un tipo de error
@@ -44,7 +44,7 @@ router.post("/signup", async (req, res, next) => {
     // validar email
 
     const foundEmail = await User.findOne({ email: req.body.email });
-    console.log(foundEmail); // se va a ver si esta o no
+    //console.log(foundEmail); // se va a ver si esta o no
 
     if (foundEmail === req.body.email) {
       res
@@ -56,7 +56,7 @@ router.post("/signup", async (req, res, next) => {
     // validar name
 
     const foundName = await User.findOne({ name: req.body.name });
-    console.log(foundName); // se va a ver si esta o no
+   // console.log(foundName); // se va a ver si esta o no
 
     if (foundName === req.body.name) {
       res
@@ -84,7 +84,7 @@ router.post("/signup", async (req, res, next) => {
 //--------------------- INICIAR SESION --------  validar credenciales del usuario
 
 router.post("/login", async (req, res, next) => {
-  console.log(req.body); // em req.body estan los datos
+  //console.log(req.body); // em req.body estan los datos
 
   // validar si el campo esta vacio
   if (req.body.email === "" || req.body.password === "") {
@@ -97,7 +97,7 @@ router.post("/login", async (req, res, next) => {
   try {
     // buscamos al usuario si exiet con ese  con el email
     const foundEmail = await User.findOne({ email: req.body.email });
-    console.log(foundEmail); // se va a ver si esta o no
+   // console.log(foundEmail); // se va a ver si esta o no
 
     if (foundEmail === null) {
       res.status(400).json({ errorMessage: "usuario no registado " });
@@ -106,7 +106,7 @@ router.post("/login", async (req, res, next) => {
 
     // vericar la contaseña
     const passwordValid = await bcrypt.compare(req.body.password, foundEmail.password) // esta password viene del body, y el segundo es la contaseña que viene del foundEmail
-    console.log("passwordValid", passwordValid) // en el terminal se ve true o false
+   // console.log("passwordValid", passwordValid) // en el terminal se ve true o false
     
     // si no es correcta notificar al frond
     if(passwordValid === false){
@@ -140,8 +140,8 @@ router.post("/login", async (req, res, next) => {
 // ruta tipo GET -------- VERIFICAR SI EL USUARIO YA ESTA VALIDADO Y ACTIVO -----// 
 router.get("/verify", isAuthenticated, (req, res, next) => {
 
-    console.log("se verifica el token")
-    console.log(req.payload)
+   // console.log("se verifica el token")
+    //console.log(req.payload)
 
     res.json(req.payload)// recibe en el fron toda la info
 })

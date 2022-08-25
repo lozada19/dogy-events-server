@@ -9,7 +9,7 @@ const isAuthenticated = expressjwt ({
     getToken: (req) => {
 
        if(req.headers === undefined || req.headers.authorization === undefined) {
-        console.log("no tenemos token")
+       // console.log("no tenemos token")
         return null
        }
 
@@ -18,7 +18,7 @@ const isAuthenticated = expressjwt ({
        const theToken = tokenArr[1]
 
        if(tokenType !== "Bearer") {
-        console.log("el token no es valido")
+       // console.log("el token no es valido")
         return null
        }
 
