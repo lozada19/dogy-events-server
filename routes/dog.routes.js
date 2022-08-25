@@ -92,6 +92,7 @@ router.delete("/:dogId",isAuthenticated, async (req, res, next) => {
 //PATCH "/api/dog/:dogId"
 router.patch("/:dogId", isAuthenticated, isDogOwner, async (req, res, next) => {
     try {
+    
         await DogModel.findByIdAndUpdate(req.params.dogId, {
             namedog: req.body.namedog,
             dateofBirth: req.body.dateofBirth,
