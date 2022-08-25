@@ -85,6 +85,7 @@ router.delete("/:eventId", isAuthenticated, async (req, res, next) => {
 router.patch("/:eventId", isAuthenticated, async (req, res, next) => {
      
     try {
+        console.log("edita", req.body)
         await EventModel.findByIdAndUpdate(req.params.eventId, {
            eventname: req.body.eventname,
            date: req.body.date,
