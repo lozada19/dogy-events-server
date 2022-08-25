@@ -38,7 +38,7 @@ router.post("/", isAuthenticated, async(req,res, next) => {
 
 router.get("/", async (req, res, next) => {
     try {
-        const allDog = await DogModel.find().select("namedog")
+        const allDog = await DogModel.find().select("namedog image")
         res.json(allDog) // aqui se envia una respuesta a la bd de frontend
     } catch (error) {
         next(error)
