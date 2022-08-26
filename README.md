@@ -1,4 +1,4 @@
-# Dogy Events - server 
+# Dogy Events 
 
 ## Descripcion 
 - Es una app donde puedes crear eventos para tu mascota y tambien hacer inscribir a tu perrito en ellos
@@ -15,7 +15,63 @@
 
 - cerrar sesion: El usuario tiene que cerrar sesion para asegurarme de que nadie acceda a mi cuenta
 
+## Cliente 
 # Rutas
+
+- Route path="/profile"
+- Route path="/dog"
+- Route path="/dog/add-form"
+- Route path="/dog/:dogId/details"
+- Route path="/dog/:dogId/edit"
+- Route path="/event"
+- Route path="/event/add-form"
+- Route path="/event/:eventId/details"
+- Route path="/event/:eventId/edit"
+- Route path="/signup"
+- Route path="/login"
+- Route path="/error"
+- Route path="/*"
+
+# Componentes 
+
+- MyDog.jsx
+- MyEvent.jsx
+- Navbar.jsx
+
+# Servicios
+
+- auth.services.js
+- config.services.js
+- dog.services.js
+- event.services.js
+- upload.services.js
+
+# Paginas 
+
+- auht
+    - Login.jsx
+    - Signup.jsx
+
+- dog 
+    - AddFormDog.jsx
+    - DogDetails.jsx
+    - DogEdit.jsx
+    - DogList.jsx
+
+- event 
+    - AddFormEvent.jsx
+    - EventDetails.jsx
+    - EventEdit.jsx
+    - EventList.jsx
+
+- profile
+    - Profile.jsx
+
+- Error.jsx
+- Home.jsx
+- NotFound.jsx
+
+## Rutas de back-end
 
 # Registro de usuario 
 
@@ -160,3 +216,6 @@
 
 ### Diapositivas
 [Enlace Slides.com]()
+
+
+
