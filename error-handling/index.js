@@ -1,12 +1,12 @@
 module.exports = (app) => {
   app.use((req, res, next) => {
-    // this middleware runs whenever requested page is not available
+    // este middleware se ejecuta cuando la página solicitada no está disponible
     res.status(404).json({ errorMessage: "This route does not exist" });
   });
 
   app.use((err, req, res, next) => {
-    // whenever you call next(err), this middleware will handle the error
-    // always logs the error
+    // cada vez que llame a next (err), este middleware manejará el error
+    // siempre registra el error
     console.error("ERROR", req.method, req.path, err);
 
     if (err.status === 401) {
@@ -14,7 +14,7 @@ module.exports = (app) => {
       res.status(401).json({errorMessage: "Usuario no autorizado"})
     }
 
-    // only render if the error ocurred before sending the response
+    // solo renderizar si el error ocurrió antes de enviar la respuesta
     if (!res.headersSent) {
       res
         .status(500)

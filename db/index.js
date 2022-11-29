@@ -1,9 +1,9 @@
-// ℹ️ package responsible to make the connection with mongodb
+// ℹ️ paquete responsable de hacer la conexión con mongodb
 // https://www.npmjs.com/package/mongoose
 const mongoose = require("mongoose");
 
-// ℹ️ Sets the MongoDB URI for our app to have access to it.
-// If no env has been set, we dynamically set it to whatever the folder name was upon the creation of the app
+// ℹ️ Establece la URI de MongoDB para que nuestra aplicación tenga acceso a ella.
+// Si no se ha configurado un entorno, lo configuramos dinámicamente con el nombre de la carpeta al crear la aplicación.
 
 const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/dogy-events-server";
 
